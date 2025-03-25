@@ -272,7 +272,7 @@
     -fx-tick-label-fill: #7f8c8d;
     -fx-font-size: 12px;
 }
-
+/*Istrinti is css scroll-pane ir payment-details-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 /* Grid lines */
 .chart-horizontal-grid-lines,
 .chart-vertical-grid-lines {
@@ -302,4 +302,26 @@
     -fx-padding: 10px 14px;
     -fx-background-radius: 10px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 2);
+}
+.table-view {
+    -fx-background-color: #edecfc;
+    -fx-border-color: #eeeeee;
+    -fx-border-radius: 10;
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #2d3e50;
+    -fx-border-radius: 10 10 0 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+.table-view .cell {
+    -fx-text-fill: #333;
+    -fx-font-size: 14px;
 }

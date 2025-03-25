@@ -17,6 +17,8 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.VBox;
 import com.lowagie.text.FontFactory;
+import javafx.collections.ObservableList;
+
 public class PaskolosSkaiciuokleController {
     @FXML
     private TextField amountField;
@@ -34,9 +36,6 @@ public class PaskolosSkaiciuokleController {
     private ChoiceBox<String> loanTypeChoice;
 
     @FXML
-    private Label resultLabel;
-
-    @FXML
     private Label resultSum;
 
     @FXML
@@ -50,7 +49,14 @@ public class PaskolosSkaiciuokleController {
 
     @FXML
     private List<Double> monthlyPayments = new ArrayList<>();
+    @FXML
+    private TableView<PaymentEntry> paymentTable;
 
+    @FXML
+    private TableColumn<PaymentEntry, Integer> monthColumn;
+
+    @FXML
+    private TableColumn<PaymentEntry, String> paymentColumn;
     @FXML
     private VBox chartContainer;
     @FXML
@@ -63,11 +69,12 @@ public class PaskolosSkaiciuokleController {
         loanTypeChoice.setItems(FXCollections.observableArrayList("Anuitetas", "Linijinis"));
         loanTypeChoice.setValue("Anuitetas");
         monthSelector.setValueFactory(new IntegerSpinnerValueFactory(1, 1, 1));
+        monthColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getMonth()));
+        paymentColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getPayment()));
     }
 
     @FXML
     protected void calculateLoan() {
-        try {
             double amount = Double.parseDouble(amountField.getText());
             double interestRate = Double.parseDouble(interestField.getText());
             int term = termSpinner.getValue();
@@ -87,7 +94,6 @@ public class PaskolosSkaiciuokleController {
                 for (int i = 0; i < term; i++) {
                     monthlyPayments.add(monthlyPayment);
                 }
-                resultLabel.setText("Mėnesio įmoka: " + String.format("%.2f €", monthlyPayment));
                 resultSum.setText("Bendra grąžinimo suma: " + String.format("%.2f €", monthlyPayment * term));
                 interestSum.setText("Bendra palūkanų suma: " + String.format("%.2f €", monthlyPayment * term - amount));
                 showChart(monthlyPayments);
@@ -106,22 +112,21 @@ public class PaskolosSkaiciuokleController {
 
                 double interestPaid = paymentSum - amount;
                 interestSum.setText("Palūkanų suma: " + String.format("%.2f", interestPaid));
-                resultLabel.setText(paymentInfo.toString());
                 resultSum.setText("Bendra grąžinimo suma: " + String.format("%.2f", paymentSum));
                 showChart(monthlyPayments);
             }
 
             // Update month selector range
             monthSelector.setValueFactory(new IntegerSpinnerValueFactory(1, term, 1));
-
-        } catch (NumberFormatException e) {
-            resultLabel.setText("Įveskite tinkamus skaičius!");
-        }
+            ObservableList<PaymentEntry> entries = FXCollections.observableArrayList();
+            for (int i = 0; i < monthlyPayments.size(); i++) {
+                entries.add(new PaymentEntry(i + 1, String.format("%.2f €", monthlyPayments.get(i))));
+            }
+            paymentTable.setItems(entries);
     }
 
     @FXML
     private void onShowSelectedMonth() {
-        try {
             int selectedMonth = monthSelector.getValue();
             int totalMonths = termSpinner.getValue() * (yearsRadio.isSelected() ? 12 : 1);
             double amount = Double.parseDouble(amountField.getText());
@@ -129,18 +134,13 @@ public class PaskolosSkaiciuokleController {
 
             if (loanTypeChoice.getValue().equals("Anuitetas")) {
                 double monthlyPayment = calculateAnnuityLoan(amount, totalMonths, interestRate);
-                resultLabel.setText(selectedMonth + " mėnesio įmoka: " + String.format("%.2f", monthlyPayment) + " €");
             } else {
                 double payment = monthlyPayments.get(selectedMonth - 1);
-                resultLabel.setText(selectedMonth + " mėnesio įmoka: " + String.format("%.2f", payment) + " €");
             }
 
             // Calculate and display remaining amount to pay
             double remainingAmount = calculateRemainingAmountToPay(amount, totalMonths, selectedMonth, interestRate);
             resultRemainingAmount.setText("Likusi suma: " + String.format("%.2f", remainingAmount) + " €");
-        } catch (Exception e) {
-            resultLabel.setText("Klaida skaičiuojant!");
-        }
     }
 
     private double calculateRemainingAmountToPay(double amount, int totalMonths, int currentMonth, double interestRate) {
@@ -252,6 +252,23 @@ public class PaskolosSkaiciuokleController {
             System.out.println("PDF sukurtas: " + fileName);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    public static class PaymentEntry {
+        private final Integer month;
+        private final String payment;
+
+        public PaymentEntry(Integer month, String payment) {
+            this.month = month;
+            this.payment = payment;
+        }
+
+        public Integer getMonth() {
+            return month;
+        }
+
+        public String getPayment() {
+            return payment;
         }
     }
 

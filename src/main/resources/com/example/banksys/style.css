@@ -294,3 +294,12 @@
     -fx-padding: 6px;
     -fx-effect: dropshadow(one-pass-box, rgba(142, 68, 173, 0.3), 5, 0, 0, 1);
 }
+.tooltip{
+    -fx-font-size: 13px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: rgba(30, 30, 30, 0.95);
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10px 14px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 2);
+}

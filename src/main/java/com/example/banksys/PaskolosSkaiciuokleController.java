@@ -3,6 +3,7 @@ package com.example.banksys;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.VBox;
+
 public class PaskolosSkaiciuokleController {
     @FXML
     private TextField amountField;
@@ -47,6 +49,7 @@ public class PaskolosSkaiciuokleController {
 
     @FXML
     private VBox chartContainer;
+
     @FXML
     public void initialize() {
         termSpinner.setValueFactory(new IntegerSpinnerValueFactory(1, 30, 10));
@@ -178,15 +181,16 @@ public class PaskolosSkaiciuokleController {
     }
 
     public void showChart(List<Double> payments) {
-        // Clear previous charts if any
         chartContainer.getChildren().clear();
 
         NumberAxis xAxis = new NumberAxis();
         xAxis.setLabel("Mėnuo");
+
         double min = Collections.min(payments) - 50;
         double max = Collections.max(payments) + 50;
         double range = max - min;
         double tickUnit = Math.max(10, range / 10);
+
         NumberAxis yAxis = new NumberAxis(min, max, tickUnit);
         yAxis.setLabel("Įmoka (€)");
 
@@ -197,15 +201,26 @@ public class PaskolosSkaiciuokleController {
         series.setName("Įmokų grafikas");
 
         for (int i = 0; i < payments.size(); i++) {
-            series.getData().add(new XYChart.Data<>(i + 1, payments.get(i)));
+            int month = i + 1;
+            double payment = payments.get(i);
+            XYChart.Data<Number, Number> dataPoint = new XYChart.Data<>(month, payment);
+            series.getData().add(dataPoint);
         }
-
-
         chart.getData().add(series);
         chart.setPrefWidth(300);
         chart.setLegendVisible(false);
+        chart.setCreateSymbols(true);
+        chart.setAnimated(true);
+        chart.setVerticalGridLinesVisible(false);
+
+        for (XYChart.Data<Number, Number> dataPoint : series.getData()) {
+            Tooltip tooltip = new Tooltip("Mėnuo: " + dataPoint.getXValue() +
+                    "\nĮmoka: " + String.format("%.2f €", dataPoint.getYValue().doubleValue()));
+            Tooltip.install(dataPoint.getNode(), tooltip);
+        }
 
         chartContainer.getChildren().add(chart);
     }
+
 
 }

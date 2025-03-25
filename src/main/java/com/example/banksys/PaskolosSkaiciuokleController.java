@@ -1,5 +1,6 @@
 package com.example.banksys;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
@@ -182,8 +183,11 @@ public class PaskolosSkaiciuokleController {
 
         NumberAxis xAxis = new NumberAxis();
         xAxis.setLabel("Mėnuo");
-
-        NumberAxis yAxis = new NumberAxis();
+        double min = Collections.min(payments) - 50;
+        double max = Collections.max(payments) + 50;
+        double range = max - min;
+        double tickUnit = Math.max(10, range / 10);
+        NumberAxis yAxis = new NumberAxis(min, max, tickUnit);
         yAxis.setLabel("Įmoka (€)");
 
         LineChart<Number, Number> chart = new LineChart<>(xAxis, yAxis);

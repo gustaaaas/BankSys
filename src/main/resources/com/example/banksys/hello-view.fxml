@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="rootPane" prefWidth="1280.0" prefHeight="720.0"
+           xmlns="http://javafx.com/javafx/23.0.1"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.banksys.TopMenu"
+           stylesheets="@style.css">
+
+    <!-- Overlay UI -->
+    <VBox alignment="CENTER" spacing="20.0"
+          StackPane.alignment="CENTER"
+          styleClass="welcome-container">
+
+        <padding>
+            <Insets top="40" bottom="40" left="40" right="40" />
+        </padding>
+
+        <Label text="Sveiki atvykę!" styleClass="welcome-title">
+            <font>
+                <Font name="System Bold" size="32.0" />
+            </font>
+        </Label>
+
+        <Label text="🎬" styleClass="welcome-subtitle">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+
+        <Button text="Paskolos skaičiuoklė"
+                onAction="#onPaskolosSumButtonClick"
+                styleClass="feature-button"
+                prefWidth="300.0"
+                prefHeight="60.0">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Button>
+
+        <Label text="✧ ✦ ✧" styleClass="decorative-element">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+    </VBox>
+</StackPane>

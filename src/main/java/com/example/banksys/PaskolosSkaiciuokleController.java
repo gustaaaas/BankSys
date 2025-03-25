@@ -3,7 +3,11 @@ package com.example.banksys;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
-
+import com.lowagie.text.Document;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.pdf.PdfPTable;
+import java.io.FileOutputStream;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.collections.FXCollections;
@@ -12,7 +16,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.VBox;
-
+import com.lowagie.text.FontFactory;
 public class PaskolosSkaiciuokleController {
     @FXML
     private TextField amountField;
@@ -49,7 +53,10 @@ public class PaskolosSkaiciuokleController {
 
     @FXML
     private VBox chartContainer;
-
+    @FXML
+    private void onExportToPDF() {
+        exportToPDF(monthlyPayments, "paskolos_rezultatai.pdf");
+    }
     @FXML
     public void initialize() {
         termSpinner.setValueFactory(new IntegerSpinnerValueFactory(1, 30, 10));
@@ -222,5 +229,30 @@ public class PaskolosSkaiciuokleController {
         chartContainer.getChildren().add(chart);
     }
 
+    public void exportToPDF(List<Double> payments, String fileName) {
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(fileName));
+            document.open();
+
+            document.add(new Paragraph("Paskolos rezultatai", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18)));
+            document.add(new Paragraph(" "));
+
+            PdfPTable table = new PdfPTable(2);
+            table.addCell("Mėnuo");
+            table.addCell("Įmoka (€)");
+
+            for (int i = 0; i < payments.size(); i++) {
+                table.addCell(String.valueOf(i + 1));
+                table.addCell(String.format("%.2f €", payments.get(i)));
+            }
+
+            document.add(table);
+            document.close();
+            System.out.println("PDF sukurtas: " + fileName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

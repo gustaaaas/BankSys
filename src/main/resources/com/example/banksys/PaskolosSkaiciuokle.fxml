@@ -17,7 +17,7 @@
 
 <BorderPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.banksys.PaskolosSkaiciuokleController">
     <left>
-        <VBox prefWidth="450.0" spacing="25.0" styleClass="input-panel" BorderPane.alignment="CENTER">
+        <VBox prefWidth="600.0" spacing="25.0" styleClass="input-panel" BorderPane.alignment="CENTER">
             <padding>
                 <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
             </padding>
@@ -93,6 +93,7 @@
                 </Button>
                 <HBox alignment="CENTER_LEFT" spacing="15.0">
                     <children>
+                        <Button fx:id="exportPDFButton" onAction="#onExportToPDF" styleClass="secondary-button" text="Eksportuoti PDF" />
                         <Button onAction="#onShowSelectedMonth" styleClass="secondary-button" text="Rodyti mėnesį" />
                         <Spinner fx:id="monthSelector" prefWidth="100.0" />
                         <Label text="mėnuo" />

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -6,15 +7,16 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<!--KNOWN BUGS NEED TO FIX THE SELECTING OF MOTNHS BEEING SHOWN-->
 
 <BorderPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.banksys.PaskolosSkaiciuokleController">
     <left>
@@ -95,9 +97,10 @@
                 <HBox alignment="CENTER_LEFT" spacing="15.0">
                     <children>
                         <Button fx:id="exportPDFButton" onAction="#onExportToPDF" styleClass="secondary-button" text="Eksportuoti PDF" />
-                        <Button onAction="#onShowSelectedMonth" styleClass="secondary-button" text="Rodyti mėnesį" />
+                        <Button onAction="#onShowSelectedMonth" styleClass="secondary-button" text="Rodyti: " />
                         <Spinner fx:id="monthSelector" prefWidth="100.0" />
-                        <Label text="mėnuo" />
+                        <Label text="mėnesį" />
+                  <Label fx:id="selectedMonthShow" text=": " />
                     </children>
                 </HBox>
             </children>
@@ -130,10 +133,10 @@
                     </children>
                 </HBox>
 
-                <TableView fx:id="paymentTable" prefHeight="275.0" prefWidth="650.0"  xmlns:fx="http://javafx.com/fxml/1">
+                <TableView fx:id="paymentTable" prefHeight="275.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1">
                     <columns>
-                        <TableColumn fx:id="monthColumn" text="Mėnuo" prefWidth="150.0" />
-                        <TableColumn fx:id="paymentColumn" text="Įmoka (€)" prefWidth="200.0" />
+                        <TableColumn fx:id="monthColumn" prefWidth="150.0" text="Mėnuo" />
+                        <TableColumn fx:id="paymentColumn" prefWidth="200.0" text="Įmoka (€)" />
                     </columns>
                 </TableView>
                   <VBox fx:id="chartContainer" prefHeight="300.0" prefWidth="300.0" spacing="10.0">

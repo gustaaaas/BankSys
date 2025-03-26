@@ -45,7 +45,7 @@ public class PaskolosSkaiciuokleController {
     private Spinner<Integer> monthSelector;
 
     @FXML
-    private Label resultRemainingAmount; // Added this label for remaining amount
+    private Label resultRemainingAmount;
 
     @FXML
     private List<Double> monthlyPayments = new ArrayList<>();
@@ -54,7 +54,8 @@ public class PaskolosSkaiciuokleController {
 
     @FXML
     private TableColumn<PaymentEntry, Integer> monthColumn;
-
+    @FXML
+    private Label selectedMonthShow;
     @FXML
     private TableColumn<PaymentEntry, String> paymentColumn;
     @FXML
@@ -134,8 +135,10 @@ public class PaskolosSkaiciuokleController {
 
             if (loanTypeChoice.getValue().equals("Anuitetas")) {
                 double monthlyPayment = calculateAnnuityLoan(amount, totalMonths, interestRate);
+                selectedMonthShow.setText(String.format("%.2f",monthlyPayment)+ "€ įmoka");
             } else {
                 double payment = monthlyPayments.get(selectedMonth - 1);
+                selectedMonthShow.setText(String.format("%.2f",payment)+ "€ įmoka");
             }
 
             // Calculate and display remaining amount to pay

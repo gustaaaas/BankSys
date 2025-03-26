@@ -13,41 +13,42 @@
            fx:controller="com.example.banksys.TopMenu"
            stylesheets="@style.css">
 
-    <!-- Overlay UI -->
-    <VBox alignment="CENTER" spacing="20.0"
+    <VBox alignment="CENTER" spacing="30.0"
           StackPane.alignment="CENTER"
           styleClass="welcome-container">
 
         <padding>
-            <Insets top="40" bottom="40" left="40" right="40" />
+            <Insets top="50" bottom="50" left="50" right="50" />
         </padding>
 
-        <Label text="Sveiki atvykę!" styleClass="welcome-title">
+        <Label text=" Paskolos Skaičiuoklė" styleClass="welcome-title">
             <font>
-                <Font name="System Bold" size="32.0" />
+                <Font name="System Bold" size="36.0" />
             </font>
         </Label>
 
-        <Label text="🎬" styleClass="welcome-subtitle">
+        <Label text="Interaktyvi ir paprasta naudoti paskolos skaičiuoklė."
+               styleClass="welcome-subtitle">
             <font>
-                <Font size="24.0" />
+                <Font size="20.0" />
             </font>
         </Label>
 
-        <Button text="Paskolos skaičiuoklė"
+        <Label text="• Skaičiuokite anuiteto arba linijinės paskolos įmokas. Peržiūrėkite grafiką ir eksportuokite PDF. Raskite likusią paskolos sumą bet kuriuo metu."
+               styleClass="feature-list">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+
+        <Button text="↪ Paleisti skaičiuoklę"
                 onAction="#onPaskolosSumButtonClick"
                 styleClass="feature-button"
-                prefWidth="300.0"
+                prefWidth="320.0"
                 prefHeight="60.0">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Button>
-
-        <Label text="✧ ✦ ✧" styleClass="decorative-element">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Label>
     </VBox>
 </StackPane>

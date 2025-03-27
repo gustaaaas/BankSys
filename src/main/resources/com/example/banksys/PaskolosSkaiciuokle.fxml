@@ -99,8 +99,7 @@
                         <Button fx:id="exportPDFButton" onAction="#onExportToPDF" styleClass="secondary-button" text="Eksportuoti PDF" />
                         <Button onAction="#onShowSelectedMonth" styleClass="secondary-button" text="Rodyti: " />
                         <Spinner fx:id="monthSelector" prefWidth="100.0" />
-                        <Label text="mėnesį" />
-                  <Label fx:id="selectedMonthShow" text=": " />
+                  <Label fx:id="selectedMonthShow" styleClass="result-label" text="mėnesio įmoka: " />
                     </children>
                 </HBox>
             </children>

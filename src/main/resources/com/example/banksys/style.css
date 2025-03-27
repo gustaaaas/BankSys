@@ -5,6 +5,7 @@
 .root {
     -fx-background-color: linear-gradient(to bottom right, #6f8de3, #0057ff);
     -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-smoothing-type: lcd;
 }
 
 /* -------------------- */
@@ -54,13 +55,13 @@
 /* -------------------- */
 
 .input-panel {
-    -fx-background-color: linear-gradient(to bottom right, white, #f8f9fa);
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #f4f6f9 50%, #e0e3eb 100%);
     -fx-background-radius: 10px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 5);
 }
 
 .results-panel {
-    -fx-background-color: linear-gradient(to bottom right, #ffffff, #ffffff);
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #f4f6f9, #d9dee5);
     -fx-background-radius: 10px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 5);
 }
@@ -173,20 +174,6 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,123,255,0.25), 6, 0, 0, 0);
 }
 
-/* -------------------- */
-/* ScrollPane           */
-/* -------------------- */
-
-.scroll-pane {
-    -fx-background-color: white;
-    -fx-background: white;
-    -fx-border-color: #dee2e6;
-    -fx-border-radius: 4px;
-}
-
-.scroll-pane > .viewport {
-    -fx-background-color: white;
-}
 
 /* -------------------- */
 /* Separator Styling    */
@@ -319,4 +306,10 @@
 .table-view .cell {
     -fx-text-fill: #333;
     -fx-font-size: 14px;
+}
+.result-label {
+    -fx-background-color: #f2f2ff;
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 8, 0.1, 0, 2);
 }

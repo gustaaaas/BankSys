@@ -162,12 +162,15 @@ public class PaskolosSkaiciuokleController {
     private double calculateRemainingAnnuityAmount(double amount, int totalMonths, int currentMonth, double interestRate) {
         double monthlyRate = interestRate / 100 / 12;
         double monthlyPayment = calculateAnnuityLoan(amount, totalMonths, interestRate);
+        double remainingPrincipal = amount;
 
-        // Calculate remaining principal using future value formula
-        double remainingAmount = amount * Math.pow(1 + monthlyRate, totalMonths)
-                - (monthlyPayment * ((Math.pow(1 + monthlyRate, totalMonths) - Math.pow(1 + monthlyRate, currentMonth)) / monthlyRate));
+        for (int i = 0; i < currentMonth; i++) {
+            double interest = remainingPrincipal * monthlyRate;
+            double principal = monthlyPayment - interest;
+            remainingPrincipal -= principal;
+        }
 
-        return Math.max(0, remainingAmount);
+        return Math.max(0, remainingPrincipal);
     }
 
     private double calculateAnnuityLoan(double amount, int months, double interestRate) {

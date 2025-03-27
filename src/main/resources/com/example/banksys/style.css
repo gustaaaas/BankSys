@@ -1,6 +1,4 @@
-/* -------------------- */
 /* General App Styling  */
-/* -------------------- */
 
 .root {
     -fx-background-color: linear-gradient(to bottom right, #6f8de3, #0057ff);
@@ -8,9 +6,7 @@
     -fx-font-smoothing-type: lcd;
 }
 
-/* -------------------- */
 /* Typography Styles     */
-/* -------------------- */
 
 .section-title {
     -fx-font-size: 24px;
@@ -50,9 +46,7 @@
     -fx-font-size: 22px;
 }
 
-/* -------------------- */
 /* Panel Styling        */
-/* -------------------- */
 
 .input-panel {
     -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #f4f6f9 50%, #e0e3eb 100%);
@@ -73,9 +67,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 15, 0.3, 0, 5);
 }
 
-/* -------------------- */
 /* Button Styling       */
-/* -------------------- */
 
 .primary-button {
     -fx-background-color: #6C63FF;
@@ -152,9 +144,7 @@
     -fx-background-radius: 4px;
 }
 
-/* -------------------- */
 /* Input Controls       */
-/* -------------------- */
 
 .text-field,
 .choice-box,
@@ -175,9 +165,7 @@
 }
 
 
-/* -------------------- */
 /* Separator Styling    */
-/* -------------------- */
 
 .separator {
     -fx-padding: 5px 0;
@@ -189,9 +177,7 @@
     -fx-border-color: linear-gradient(to right, transparent, #dee2e6, transparent);
 }
 
-/* -------------------- */
 /* Radio Button Styling */
-/* -------------------- */
 
 .custom-radio {
     -fx-padding: 8px;
@@ -210,22 +196,18 @@
     -fx-padding: 4px;
 }
 
-/* -------------------- */
 /* Decorative Elements  */
-/* -------------------- */
 
 .decorative-element {
     -fx-text-fill: #95a5a6;
     -fx-font-size: 18px;
 }
 
-/*-----------------------*/
-/*       For the Graphs  */
+/*   For the Graphs  */
 .chart {
     -fx-background-color: transparent;
 }
 
-/* The plot area (where the lines are drawn) */
 .chart-plot-background {
     -fx-background-color: linear-gradient(to bottom right, #eeeeee, #8da5d2);
     -fx-background-radius: 12px;
@@ -254,7 +236,6 @@
     -fx-tick-label-fill: #7f8c8d;
     -fx-font-size: 12px;
 }
-/*Istrinti is css scroll-pane ir payment-details-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 /* Grid lines */
 .chart-horizontal-grid-lines,
 .chart-vertical-grid-lines {

@@ -14,8 +14,6 @@ public class TopMenu {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/banksys/PaskolosSkaiciuokle.fxml"));
             Parent root = fxmlLoader.load();
 
-
-            // Create a new stage (window)
             Stage newStage = new Stage();
             newStage.setTitle("Paskolos Skaičiuoklė");
             newStage.setScene(new Scene(root));

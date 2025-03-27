@@ -91,7 +91,6 @@ public class PaskolosSkaiciuokleController {
                 monthlyPayments.clear();
                 monthlyPayment = calculateAnnuityLoan(amount, term, interestRate);
 
-                //Reikia masyvo grafikui braizyt
                 for (int i = 0; i < term; i++) {
                     monthlyPayments.add(monthlyPayment);
                 }
@@ -117,7 +116,6 @@ public class PaskolosSkaiciuokleController {
                 showChart(monthlyPayments);
             }
 
-            // Update month selector range
             monthSelector.setValueFactory(new IntegerSpinnerValueFactory(1, term, 1));
             ObservableList<PaymentEntry> entries = FXCollections.observableArrayList();
             for (int i = 0; i < monthlyPayments.size(); i++) {
@@ -141,7 +139,6 @@ public class PaskolosSkaiciuokleController {
                 selectedMonthShow.setText(String.format("%.2f",payment)+ "€ įmoka");
             }
 
-            // Calculate and display remaining amount to pay
             double remainingAmount = calculateRemainingAmountToPay(amount, totalMonths, selectedMonth, interestRate);
             resultRemainingAmount.setText("Likusi suma: " + String.format("%.2f", remainingAmount) + " €");
     }

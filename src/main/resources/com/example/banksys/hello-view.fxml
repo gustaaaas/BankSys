@@ -34,14 +34,7 @@
             </font>
         </Label>
 
-        <Label text="• Skaičiuokite anuiteto arba linijinės paskolos įmokas. Peržiūrėkite grafiką ir eksportuokite PDF. Raskite likusią paskolos sumą bet kuriuo metu."
-               styleClass="feature-list">
-            <font>
-                <Font size="16.0" />
-            </font>
-        </Label>
-
-        <Button text="↪ Paleisti skaičiuoklę"
+        <Button text="Paleisti skaičiuoklę"
                 onAction="#onPaskolosSumButtonClick"
                 styleClass="feature-button"
                 prefWidth="320.0"

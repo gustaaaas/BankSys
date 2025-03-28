@@ -23,7 +23,7 @@
             <padding>
                 <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
             </padding>
-            <children>
+
                 <Label styleClass="section-title" text="Paskolos Skaičiuoklė">
                     <font>
                         <Font name="System Bold" size="24.0" />
@@ -37,10 +37,8 @@
                     </font>
                 </Label>
                 <HBox alignment="CENTER_LEFT" spacing="15.0">
-                    <children>
                         <Label text="Paskolos suma (€):" />
                         <TextField fx:id="amountField" prefWidth="200.0" />
-                    </children>
                 </HBox>
 
                 <Separator />
@@ -50,20 +48,16 @@
                     </font>
                 </Label>
                 <HBox alignment="CENTER_LEFT" spacing="15.0">
-                    <children>
                         <Label text="Terminą:" />
                         <Spinner fx:id="termSpinner" prefWidth="100.0" />
                         <HBox alignment="CENTER_LEFT" spacing="10.0">
-                            <children>
                                 <RadioButton fx:id="monthsRadio" text="Mėnesiai">
                                     <toggleGroup>
                                         <ToggleGroup fx:id="termToggle" />
                                     </toggleGroup>
                                 </RadioButton>
                                 <RadioButton fx:id="yearsRadio" text="Metai" toggleGroup="$termToggle" />
-                            </children>
                         </HBox>
-                    </children>
                 </HBox>
 
                 <Separator />
@@ -74,34 +68,28 @@
                     </font>
                 </Label>
                 <HBox alignment="CENTER_LEFT" spacing="15.0">
-                    <children>
                         <Label text="Metinis palūkanų procentas:" />
                         <TextField fx:id="interestField" prefWidth="200.0" />
-                    </children>
                 </HBox>
                 <HBox alignment="CENTER_LEFT" spacing="15.0">
-                    <children>
                         <Label text="Paskolos tipas:" />
                         <ChoiceBox fx:id="loanTypeChoice" prefWidth="200.0" />
-                    </children>
                 </HBox>
 
                 <Separator />
 
-                <Button fx:id="calculateButton" onAction="#calculateLoan" styleClass="primary-button" text="Skaičiuoti visų mėnėsių rezultatą">
+                <Button onAction="#calculateLoan" styleClass="primary-button" text="Skaičiuoti visų mėnėsių rezultatą">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Button>
                 <HBox alignment="CENTER_LEFT" spacing="15.0">
-                    <children>
-                        <Button fx:id="exportPDFButton" onAction="#onExportToPDF" styleClass="secondary-button" text="Eksportuoti PDF" />
+                        <Button onAction="#onExportToPDF" styleClass="secondary-button" text="Eksportuoti PDF" />
                         <Button onAction="#onShowSelectedMonth" styleClass="secondary-button" text="Rodyti: " />
                         <Spinner fx:id="monthSelector" prefWidth="100.0" />
-                  <Label fx:id="selectedMonthShow" styleClass="result-label" text="mėnesio įmoka: " />
-                    </children>
+                        <Label fx:id="selectedMonthShow" styleClass="result-label" text="mėnesio įmoka: " />
                 </HBox>
-            </children>
+
         </VBox>
     </left>
     <center>
@@ -109,7 +97,6 @@
             <padding>
                 <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
             </padding>
-            <children>
                 <Label styleClass="section-title" text="Rezultatas">
                     <font>
                         <Font name="System Bold" size="24.0" />
@@ -120,15 +107,11 @@
                     <padding>
                         <Insets bottom="20.0" top="20.0" />
                     </padding>
-                    <children>
                         <VBox spacing="30.0">
-                            <children>
                                 <Label fx:id="resultSum" styleClass="result-label" text="Bendra grąžinimo suma bus čia..." />
                                 <Label fx:id="interestSum" styleClass="result-label" text="Palūkanų suma bus čia..." />
-                            </children>
                         </VBox>
                   <Label fx:id="resultRemainingAmount" styleClass="result-label" text="Likus mokėtina suma..." />
-                    </children>
                 </HBox>
 
                 <TableView fx:id="paymentTable" prefHeight="275.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1">
@@ -139,7 +122,6 @@
                 </TableView>
                   <VBox fx:id="chartContainer" prefHeight="300.0" prefWidth="300.0" spacing="10.0">
                         </VBox>
-            </children>
         </VBox>
     </center>
 </BorderPane>

@@ -257,7 +257,12 @@ public class PaskolosSkaiciuokleController {
             e.printStackTrace();
         }
     }
-    public static class PaymentEntry {
+    public static class Entry {
+        public String getInfo() {
+            return "Basic entry";
+        }
+    }
+    public static class PaymentEntry extends Entry {
         private final Integer month;
         private final String payment;
 
@@ -267,11 +272,16 @@ public class PaskolosSkaiciuokleController {
         }
 
         public Integer getMonth() {
-            return month;
+            return this.month;
         }
 
         public String getPayment() {
-            return payment;
+            return this.payment;
+        }
+
+        @Override
+        public String getInfo() {
+            return "Mėnuo: " + this.month + ", Įmoka: " + this.payment;
         }
     }
 

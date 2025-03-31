@@ -72,7 +72,7 @@
                         <TextField fx:id="interestField" prefWidth="200.0" />
                 </HBox>
                 <HBox alignment="CENTER_LEFT" spacing="15.0">
-                        <Label text="Paskolos tipas:" />
+                        <Label text="Paskolos tipas " />
                         <ChoiceBox fx:id="loanTypeChoice" prefWidth="200.0" />
                 </HBox>
 

@@ -1,13 +1,8 @@
 package com.example.banksys;
-
+import com.example.banksys.util.PdfExporter;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
-import com.lowagie.text.Document;
-import com.lowagie.text.Paragraph;
-import com.lowagie.text.pdf.PdfWriter;
-import com.lowagie.text.pdf.PdfPTable;
-import java.io.FileOutputStream;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.collections.FXCollections;
@@ -16,7 +11,6 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.VBox;
-import com.lowagie.text.FontFactory;
 import javafx.collections.ObservableList;
 
 public class PaskolosSkaiciuokleController {
@@ -48,7 +42,7 @@ public class PaskolosSkaiciuokleController {
     private Label resultRemainingAmount;
 
     @FXML
-    private List<Double> monthlyPayments = new ArrayList<>();
+    private final List<Double> monthlyPayments = new ArrayList<>();
     @FXML
     private TableView<PaymentEntry> paymentTable;
 
@@ -62,7 +56,7 @@ public class PaskolosSkaiciuokleController {
     private VBox chartContainer;
     @FXML
     private void onExportToPDF() {
-        exportToPDF(monthlyPayments, "paskolos_rezultatai.pdf");
+        PdfExporter.exportToPDF(monthlyPayments, "paskolos_rezultatai.pdf");
     }
     @FXML
     public void initialize() {
@@ -73,7 +67,6 @@ public class PaskolosSkaiciuokleController {
         monthColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getMonth()));
         paymentColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getPayment()));
     }
-
     @FXML
     protected void calculateLoan() {
             double amount = Double.parseDouble(amountField.getText());
@@ -147,11 +140,11 @@ public class PaskolosSkaiciuokleController {
         if (loanTypeChoice.getValue().equals("Anuitetas")) {
             return calculateRemainingAnnuityAmount(amount, totalMonths, currentMonth, interestRate);
         } else {
-            return calculateRemainingLinearAmount(amount, totalMonths, currentMonth, interestRate);
+            return calculateRemainingLinearAmount(amount, totalMonths, currentMonth);
         }
     }
 
-    private double calculateRemainingLinearAmount(double amount, int totalMonths, int currentMonth, double interestRate) {
+    private double calculateRemainingLinearAmount(double amount, int totalMonths, int currentMonth) {
         double principalPart = amount / totalMonths;
         return Math.max(0, amount - (currentMonth * principalPart));
     }
@@ -230,32 +223,6 @@ public class PaskolosSkaiciuokleController {
         }
 
         chartContainer.getChildren().add(chart);
-    }
-
-    public void exportToPDF(List<Double> payments, String fileName) {
-        try {
-            Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream(fileName));
-            document.open();
-
-            document.add(new Paragraph("Paskolos rezultatai", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18)));
-            document.add(new Paragraph(" "));
-
-            PdfPTable table = new PdfPTable(2);
-            table.addCell("Mėnuo");
-            table.addCell("Įmoka (€)");
-
-            for (int i = 0; i < payments.size(); i++) {
-                table.addCell(String.valueOf(i + 1));
-                table.addCell(String.format("%.2f €", payments.get(i)));
-            }
-
-            document.add(table);
-            document.close();
-            System.out.println("PDF sukurtas: " + fileName);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
     public static class Entry {
         public String getInfo() {

@@ -4,6 +4,7 @@ module com.example.banksys {
     requires com.dlsc.formsfx;
     requires com.github.librepdf.openpdf;
     requires java.desktop;
+    requires itextpdf;
     opens com.example.banksys to javafx.fxml;
     exports com.example.banksys;
 }

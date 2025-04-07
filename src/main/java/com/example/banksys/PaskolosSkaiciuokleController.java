@@ -45,7 +45,8 @@ public class PaskolosSkaiciuokleController {
     private final List<Double> monthlyPayments = new ArrayList<>();
     @FXML
     private TableView<PaymentEntry> paymentTable;
-
+    @FXML
+    private Spinner<Integer> delayStartMonth;
     @FXML
     private TableColumn<PaymentEntry, Integer> monthColumn;
     @FXML
@@ -64,6 +65,7 @@ public class PaskolosSkaiciuokleController {
         loanTypeChoice.setItems(FXCollections.observableArrayList("Anuitetas", "Linijinis"));
         loanTypeChoice.setValue("Anuitetas");
         monthSelector.setValueFactory(new IntegerSpinnerValueFactory(1, 1, 1));
+        delayStartMonth.setValueFactory(new IntegerSpinnerValueFactory(0, 12, 0));
         monthColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getMonth()));
         paymentColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getPayment()));
     }
@@ -72,7 +74,7 @@ public class PaskolosSkaiciuokleController {
             double amount = Double.parseDouble(amountField.getText());
             double interestRate = Double.parseDouble(interestField.getText());
             int term = termSpinner.getValue();
-
+            int delay = delayStartMonth.getValue();
             if (yearsRadio.isSelected()) {
                 term *= 12;
             }
@@ -84,6 +86,9 @@ public class PaskolosSkaiciuokleController {
                 monthlyPayments.clear();
                 monthlyPayment = calculateAnnuityLoan(amount, term, interestRate);
 
+                for (int i = 0; i < delay; i++) {
+                    monthlyPayments.add(0.00); // Delayed months with 0 payments
+                }
                 for (int i = 0; i < term; i++) {
                     monthlyPayments.add(monthlyPayment);
                 }

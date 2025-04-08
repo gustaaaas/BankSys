@@ -87,7 +87,7 @@ public class PaskolosSkaiciuokleController {
                 monthlyPayment = calculateAnnuityLoan(amount, term, interestRate);
 
                 for (int i = 0; i < delay; i++) {
-                    monthlyPayments.add(0.00); // Delayed months with 0 payments
+                    monthlyPayments.add(0.00);
                 }
                 for (int i = 0; i < term; i++) {
                     monthlyPayments.add(monthlyPayment);

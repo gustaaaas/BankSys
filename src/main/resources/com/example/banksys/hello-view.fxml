@@ -27,7 +27,7 @@
             </font>
         </Label>
 
-        <Label text="Interaktyvi ir paprasta naudoti paskolos skaičiuoklė."
+        <Label text="Paprasta naudoti paskolos skaičiuoklė."
                styleClass="welcome-subtitle">
             <font>
                 <Font size="20.0" />
